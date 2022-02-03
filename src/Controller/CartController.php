@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Classe\Cart;
+use App\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -12,24 +12,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     #[Route('/cart', name: 'cart')]
-    public function index(Cart $cart): Response
+    public function index(SessionInterface $session): Response
     {
-       dd($cart->get());
-        return $this->render('cart/index.html.twig');
+        $cart = $session->get('cart');
+        dd($cart);
+        return $this->render('cart/index.html.twig', [
+            'cart' => $cart
+        ]);
     }
     
     #[Route('/cart/add/{id}', name: 'add_to_cart')]
-    public function add(Cart $cart, int $id): Response
+    public function add(int $id, SessionInterface $session, Product $product): Response
     {
-        $cart->add($id);
-
-        return $this->render('cart/index.html.twig');
+        $session->set('cart', $product);
+        return $this->redirectToRoute('cart');
     }
 
-    public function get()
-    {
-        $this->get('cart');
-    }
 }
 
 

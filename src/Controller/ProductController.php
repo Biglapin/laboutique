@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Class\Search;
+use App\Classe\Search;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,6 +26,7 @@ class ProductController extends AbstractController
     {
        
         $search = new Search();
+
         $form = $this->createForm( SearchType::class, $search);
 
 
