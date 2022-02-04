@@ -24,6 +24,10 @@ services:
 
     App\Classe\Cart:
         autowire: true 
+    
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
  
 
     # add more service definitions when explicit configuration is needed

@@ -4,14 +4,15 @@ namespace App\Classe;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Contracts\Service\Attribute\Required;
+
 
 
 class Cart
 {
-
-  public function __construct(
-    public SessionInterface $session,
-  )
+/* 
+  #[Required]
+  public function __construct( SessionInterface $session)
   {
     $this->session = $session;
   }
@@ -24,5 +25,5 @@ class Cart
         'quantity' => 1
       ]
    ]);
-  } 
+  }  */
 }
